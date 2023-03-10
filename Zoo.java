@@ -1,4 +1,4 @@
-package ua.lviv.iot.algo.part1.Zoo;
+package ua.lviv.iot.algo.lab1.Zoo;
 
 
 import lombok.*;
