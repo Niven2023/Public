@@ -30,11 +30,15 @@ public class Zoo {
     }
 
     public static void main(String[] args) {
-        Zoo[] ZooArray = new Zoo[4];
-        ZooArray[0] = new Zoo();
-        ZooArray[1] = new Zoo("Kyiv Zoo", "Kyiv",  92 ,  3292);
-        ZooArray[2] = getInstance();
-        ZooArray[3] = getInstance();
-        System.out.println(ZooArray[1]);
+        Zoo[] ZooArray = {
+        new Zoo(),
+        new Zoo("Kyiv Zoo", "Kyiv",  92 ,  3292),
+        getInstance(),
+        getInstance()
+        };
+        for(Zoo zoo :zooArray){
+        System.out.println(zoo);
+        }
+      }
     }
 }
