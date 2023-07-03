@@ -11,9 +11,6 @@ class AbstractAnimalHome(ABC):
     def calculate_cost_per_month(self):
         pass
 
-    def do_something(self):
-        pass
-
 
 class Zoo(AbstractAnimalHome):
     def __init__(self, name, location, area, capacity, working_hours, daily_cost):
@@ -25,9 +22,6 @@ class Zoo(AbstractAnimalHome):
     def calculate_cost_per_month(self):
         return self.daily_cost * 30
 
-    def do_something(self):
-        return "Zoo"
-
 
 class Farm(AbstractAnimalHome):
     def __init__(self, name, location, area, animal_type, daily_food_cost):
@@ -38,9 +32,6 @@ class Farm(AbstractAnimalHome):
     def calculate_cost_per_month(self):
         return self.daily_food_cost * 30
 
-    def do_something(self):
-        return "Farm"
-
 
 class AnimalHomeManager:
     def __init__(self):
@@ -49,33 +40,9 @@ class AnimalHomeManager:
     def add_animal_home(self, animal_home):
         self.animal_homes.append(animal_home)
 
-    def __len__(self):
-        return len(self.animal_homes)
-
-    def __getitem__(self, index):
-        return self.animal_homes[index]
-
-    def __iter__(self):
-        return iter(self.animal_homes)
-
-    def calculate_do_something_results(self):
-        return [animal_home.do_something() for animal_home in self.animal_homes]
-
-    def get_concatenated_objects_with_indices(self):
-        return [(index, str(animal_home)) for index, animal_home in enumerate(self.animal_homes)]
-
-    def get_objects_with_do_something_results(self):
-        return [(animal_home, animal_home.do_something()) for animal_home in self.animal_homes]
-
-    def get_attribute_values_by_type(self, data_type):
-        return {key: value for key, value in self.animal_homes[0].__dict__.items()
-                if isinstance(value, data_type)}
-
-    def check_condition_for_all_objects(self, condition):
-        return {'all': all(condition(animal_home) for animal_home in self.animal_homes)}
-
-    def check_condition_for_any_object(self, condition):
-        return {'any': any(condition(animal_home) for animal_home in self.animal_homes)}
+    def print_animal_homes(self):
+        for animal_home in self.animal_homes:
+            print(animal_home)
 
 
 zoo = Zoo("Kyiv Zoo", "Kyiv", 92, 3292, "9:00 - 18:00", 5000)
@@ -87,11 +54,4 @@ animal_home_manager.add_animal_home(zoo)
 animal_home_manager.add_animal_home(farm1)
 animal_home_manager.add_animal_home(farm2)
 
-print("Calculate do_something results:", animal_home_manager.calculate_do_something_results())
-print("Concatenated objects with indices:", animal_home_manager.get_concatenated_objects_with_indices())
-print("Objects with do_something results:", animal_home_manager.get_objects_with_do_something_results())
-print("Attribute values of type int:", animal_home_manager.get_attribute_values_by_type(int))
-print("Condition for all objects:", animal_home_manager.check_condition_for_all_objects(
-    lambda animal_home: animal_home.area > 100))
-print("Condition for any object:", animal_home_manager.check_condition_for_any_object(
-    lambda animal_home: animal_home.location == "Rural Area"))
+animal_home_manager.print_animal_homes()
