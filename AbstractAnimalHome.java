@@ -1,6 +1,8 @@
 package org.example;
 
 import lombok.ToString;
+import java.util.ArrayList;
+import java.util.List;
 
 @ToString
 public abstract class AbstractAnimalHome {
