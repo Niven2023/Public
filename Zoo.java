@@ -1,40 +1,21 @@
 package org.example;
 
+import lombok.ToString;
 
-import lombok.*;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-public class Zoo {
-    private String name;
-    private String location;
-    private double area;
+@ToString(callSuper = true)
+public class Zoo extends AbstractAnimalHome {
     private int capacity;
-    private static Zoo instance = new Zoo();
-    public static Zoo getInstance() {
-        return instance;
-    }
-    public void increaseCapacity(int count) {
-        this.capacity += count;
+    private String workingHours;
+    private double dailyCost;
+
+    public Zoo(String name, String location, double area, int capacity, String workingHours, double dailyCost) {
+        super(name, location, area);
+        this.capacity = capacity;
+        this.workingHours = workingHours;
+        this.dailyCost = dailyCost;
     }
 
-    public void splitArea() {
-        this.area /= 2;
-    }
-
-    public void addNewRegion(double area) {
-        this.area += area;
-    }
-
-    public static void main(String[] args) {
-        Zoo[] ZooArray = new Zoo[4];
-        ZooArray[0] = new Zoo();
-        ZooArray[1] = new Zoo("Kyiv Zoo", "Kyiv",  92 ,  3292);
-        ZooArray[2] = getInstance();
-        ZooArray[3] = getInstance();
-        System.out.println(ZooArray[1]);
+    public double calculateCostPerMonth() {
+        return dailyCost * 30; // Припустимо, що місяць складається з 30 днів
     }
 }
